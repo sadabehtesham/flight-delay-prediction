@@ -10,9 +10,15 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import roc_auc_score, accuracy_score
 
 BASE_DIR = Path(__file__).resolve().parent
+DATASET_PATH = BASE_DIR / "flights.csv"
+SAMPLE_DATASET_PATH = BASE_DIR / "sample_flights.csv"
 
 # Load Dataset
-flights = pd.read_csv(BASE_DIR / "flights.csv", low_memory=False)
+if DATASET_PATH.exists():
+    flights = pd.read_csv(DATASET_PATH, low_memory=False)
+else:
+    flights = pd.read_csv(SAMPLE_DATASET_PATH, low_memory=False)
+    print("Using sample_flights.csv because the full flights.csv dataset is not included in this repository.")
 
 # Taking first 100000 rows
 flights_needed_data = flights[0:100000]
