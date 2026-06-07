@@ -1,8 +1,69 @@
 # Flight Delay Prediction
 
-This project trains a Decision Tree classifier to predict whether a flight will be delayed by more than 15 minutes using the U.S. flight delay dataset.
+## Overview
+This project is a machine-learning solution for predicting whether a flight will be delayed by more than 15 minutes using flight operations data and a Decision Tree classifier.
 
-The dataset used for the full model is the public flight delay dataset stored in `flights.csv`. It comes from the U.S. DOT / airline flight operations data commonly used for delay prediction experiments. The full file is intentionally not stored in this repository because it is too large for GitHub. This repo includes a smaller sample file, `sample_flights.csv`, for quick local testing.
+## Dataset
+The full model uses the public flight delay dataset stored in `flights.csv`. It comes from U.S. DOT / airline flight operations data commonly used for delay prediction experiments. The full file is intentionally not stored in this repository because it is too large for GitHub. This repo includes a smaller sample file, `sample_flights.csv`, for quick local testing.
+
+## Data Preprocessing
+- Load the dataset from `flights.csv` or fall back to `sample_flights.csv`
+- Drop non-essential columns and leakage-prone fields
+- Fill missing numeric values with column means
+- Create a binary target variable where `ARRIVAL_DELAY > 15` means a delay
+
+## Exploratory Data Analysis
+- Joint plot of scheduled arrival vs arrival time
+- Correlation heatmap for feature relationships
+- Confusion matrix visualization for model evaluation
+
+## Model Training
+- Split data into train/test sets
+- Standardize features with `StandardScaler`
+- Train a `DecisionTreeClassifier`
+- Evaluate using accuracy and ROC-AUC
+
+## Results
+
+| Metric | Score |
+|----------|----------|
+| Accuracy | 99.84% |
+| ROC-AUC Score | 99.81% |
+
+## How to Run
+
+### Option 1: Use the full dataset
+```bash
+python flight_delay.py
+```
+
+### Option 2: Use the included sample data
+```bash
+python generate_sample_dataset.py
+python flight_delay.py
+```
+
+## Future Improvements
+- Add a Flask web app with user input form and prediction page
+- Compare multiple models such as Random Forest and XGBoost
+- Add feature engineering for airport and airline-specific delay patterns
+
+## Project Structure
+
+```text
+flight_delay.py
+flight_delay_notebook.ipynb
+sample_flights.csv
+requirements.txt
+README.md
+screenshots/
+```
+
+## Screenshots
+- Joint Plot: [screenshots/joint_plot.png](screenshots/joint_plot.png)
+- Heatmap: [screenshots/heatmap.png](screenshots/heatmap.png)
+- Confusion Matrix: [screenshots/confusion_matrix.png](screenshots/confusion_matrix.png)
+- Terminal Output: [screenshots/terminal_output.png](screenshots/terminal_output.png)
 
 ## Features
 - Loads flight data from `flights.csv`
@@ -24,19 +85,6 @@ The dataset used for the full model is the public flight delay dataset stored in
    ```bash
    python generate_sample_dataset.py
    ```
-
-## How to Run the Project
-
-### Option 1: Use the full dataset
-```bash
-python flight_delay.py
-```
-
-### Option 2: Use the included sample data
-```bash
-python generate_sample_dataset.py
-python flight_delay.py
-```
 
 ## Setup
 
