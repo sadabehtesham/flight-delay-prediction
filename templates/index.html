@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flight Delay Prediction</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 2rem; background: #f7f9fc; color: #1f2937; }
+      .card { background: white; border-radius: 12px; padding: 1.2rem; box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08); max-width: 980px; margin: auto; }
+      h1, h2 { color: #111827; }
+      .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
+      label { display: block; font-size: 0.95rem; margin-bottom: 0.25rem; font-weight: 600; }
+      input { width: 100%; box-sizing: border-box; padding: 0.55rem; border-radius: 8px; border: 1px solid #cbd5e1; }
+      button { background: #2563eb; color: white; border: none; border-radius: 8px; padding: 0.75rem 1rem; font-size: 1rem; cursor: pointer; }
+      .metrics { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+      .chip { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 999px; padding: 0.35rem 0.65rem; font-size: 0.95rem; color: #1d4ed8; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Flight Delay Prediction Web App</h1>
+      <p>This portfolio-ready version adds a simple prediction form on top of the existing Decision Tree model.</p>
+      <div class="metrics">
+        <span class="chip">Accuracy: {{ '%.4f'|format(metrics.accuracy) }}</span>
+        <span class="chip">ROC-AUC: {{ '%.4f'|format(metrics.roc_auc) }}</span>
+      </div>
+
+      <h2>Enter flight details</h2>
+      <form method="post" action="/predict">
+        <div class="grid">
+          <div><label>Month</label><input type="number" name="MONTH" value="6" required /></div>
+          <div><label>Day</label><input type="number" name="DAY" value="14" required /></div>
+          <div><label>Scheduled Departure</label><input type="number" name="SCHEDULED_DEPARTURE" value="700" required /></div>
+          <div><label>Departure Delay</label><input type="number" name="DEPARTURE_DELAY" value="10" required /></div>
+          <div><label>Taxi Out</label><input type="number" name="TAXI_OUT" value="18" required /></div>
+          <div><label>Scheduled Time</label><input type="number" name="SCHEDULED_TIME" value="180" required /></div>
+          <div><label>Elapsed Time</label><input type="number" name="ELAPSED_TIME" value="170" required /></div>
+          <div><label>Distance</label><input type="number" name="DISTANCE" value="1200" required /></div>
+          <div><label>Scheduled Arrival</label><input type="number" name="SCHEDULED_ARRIVAL" value="930" required /></div>
+          <div><label>Diverted</label><input type="number" name="DIVERTED" value="0" required /></div>
+          <div><label>Cancelled</label><input type="number" name="CANCELLED" value="0" required /></div>
+        </div>
+        <p style="margin-top: 1rem;"><button type="submit">Predict Delay</button></p>
+      </form>
+    </div>
+  </body>
+</html>

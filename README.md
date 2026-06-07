@@ -1,7 +1,7 @@
 # Flight Delay Prediction
 
 ## Overview
-This project is a machine-learning solution for predicting whether a flight will be delayed by more than 15 minutes using flight operations data and a Decision Tree classifier.
+This project is a machine-learning solution for predicting whether a flight will be delayed by more than 15 minutes using flight operations data and a Decision Tree classifier. It now also includes a simple Flask web app with a prediction form and result page for portfolio-ready demonstrations.
 
 ## Dataset
 The full model uses the public flight delay dataset stored in `flights.csv`. It comes from U.S. DOT / airline flight operations data commonly used for delay prediction experiments. The full file is intentionally not stored in this repository because it is too large for GitHub. This repo includes a smaller sample file, `sample_flights.csv`, for quick local testing.
@@ -32,19 +32,24 @@ The full model uses the public flight delay dataset stored in `flights.csv`. It 
 
 ## How to Run
 
-### Option 1: Use the full dataset
+### Option 1: Run the command-line model
 ```bash
 python flight_delay.py
 ```
 
-### Option 2: Use the included sample data
+### Option 2: Run the Flask web app
+```bash
+python app.py
+```
+Then open http://127.0.0.1:5000/ in your browser.
+
+### Option 3: Use the included sample data
 ```bash
 python generate_sample_dataset.py
 python flight_delay.py
 ```
 
 ## Future Improvements
-- Add a Flask web app with user input form and prediction page
 - Compare multiple models such as Random Forest and XGBoost
 - Add feature engineering for airport and airline-specific delay patterns
 
@@ -52,6 +57,8 @@ python flight_delay.py
 
 ```text
 flight_delay.py
+app.py
+templates/
 flight_delay_notebook.ipynb
 sample_flights.csv
 requirements.txt
